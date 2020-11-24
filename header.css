@@ -1,0 +1,197 @@
+@charset "utf-8";
+
+
+
+
+header, body, footer {
+    text-align: center;
+}
+
+.ui-body {
+    background-color: rgb(138, 237, 239);
+}
+
+#other-color {
+    background: rgb(138, 237, 239) !important;
+}
+
+/* 모바일용 */
+@media only screen and (max-width: 767px) {
+
+
+
+
+    #headerbase {
+        background-color: rgb(138, 237, 239); height: 130px;
+    }
+    a {
+        text-decoration: none;
+        
+    }
+
+    #gotohome {
+        background-color: rgba(255, 255, 255, 0);
+        position: absolute;
+        height: 80px;
+        width: 180px;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+    }
+    .logoicon {
+        /* background-color: rgb(100, 100, 100); */
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 3%;
+        left: 0;
+        top: 0;
+        bottom: 0;
+
+    }
+    .sitename {
+        color: rgb(0, 0, 0);
+        font-size: 35px;
+        /* display: inline; */
+        /* margin: 10px 0px 0px 80px; */
+        /* background-color: rgb(100, 100, 100); */
+
+        position: absolute;
+        top: 50%;
+        transform: translateY(-125%);
+        right: 0;
+        margin-right: 3%;
+        
+    }
+    .headerCentered {
+        position: absolute;
+        top: 40%;
+        transform: translateY(-50%);
+    }
+    .sitedesc {
+        visibility: hidden;
+    }
+
+
+
+    .mainmenu {
+        /* background-color: rgb(130, 220, 223); */
+        position: absolute;
+        bottom: 0%;
+        height: 30px;
+        width: 100%;
+        margin: 0;
+    }
+
+    .menuitem {
+        background-color: rgb(138, 237, 239) !important;
+        color: black;
+        font-size: 18px !important;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border:none;
+    }
+
+    .selected_menu {
+        background-color:rgb(219, 247, 248) !important;
+        color: black;
+        font-size: 18px !important;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border:none;
+    }
+
+    #navbtnfirst {
+        
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+
+}
+
+/* PC용 */
+@media only screen and (min-width: 768px) {
+        
+    #headerbase {
+        background-color: rgb(138, 237, 239); height: 150px;
+    }
+    a {
+        text-decoration: none;
+    }
+    .gotohome {
+        background-color: rgba(255, 255, 255, 0);
+        position: absolute;
+        /* height: 100px; */
+        /* left: 40px; */
+        /* padding-left: 20px; */
+    }
+    .logoicon {
+        width: 100px;
+        height: 100px;
+        margin-left: 20px;
+        /* display: inline; */
+        float: left;
+        /* background-color: rgb(100, 100, 100); */
+
+    }
+    .sitename {
+        /* background-color: rgb(100, 100, 100); */
+        color: rgb(0, 0, 0);
+        font-size: 70px;
+        position: relative;
+        margin: 10px 0px 0px 30px;
+
+        /* top: 0px; */
+        /* bottom: 20px;  */
+        /* margin-left: 30px; */
+        /* margin-bottom: 30px; */
+        float: left;
+    }
+    .headerCentered {
+        position: absolute;
+        top: 40%;
+        transform: translateY(-50%);
+    }
+    .sitedesc {
+        font-size: 20px; position:absolute; top:40%; right: 50px;
+    }
+
+    .mainmenu {
+        background-color: rgb(130, 220, 223);
+        position: absolute;
+        bottom: 0%;
+        height: 30px;
+        width: 100%;
+        margin: 0;
+    }
+    .menuitem {
+        background-color: rgb(130, 220, 223) !important;
+        color: black;
+        font-size: 18px !important;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border:none;
+    }
+    .selected_menu {
+        background-color:rgb(219, 247, 248) !important;
+        color: black;
+        font-size: 18px !important;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border:none;
+    }
+
+
+    .footer {
+        background-color: rgb(100, 100, 100);
+        width: 100%;
+        bottom: 0;
+    }
+
+}

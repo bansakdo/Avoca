@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avoca - Track</title>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <!-- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <link rel="stylesheet" href="header.css" type="text/css">
+    <link rel="stylesheet" href="common.css" type="text/css">
+
+    <script src="requset.js"></script>
+    <script src="menus.js"></script>
+
+    <style>
+
+        /* 모바일용 */
+        @media only screen and (max-width: 767px) {
+
+        }
+
+        /* PC용 */
+        @media screen and (min-width: 768px) {
+
+
+        }
+    </style>
+
+</head>
+<body>
+    <div data-role="page" id="main">
+        <div data-role="header" id="headerbase" data-position="fixed">
+            <div class="headerCentered" id="gotohome">
+                <a href="index.html" data-role="none" >
+                    <input type="image" src="img/avoca.png" class="logoicon">
+                    <p class="sitename">Avoca</p>
+                </a>
+            </div>
+            <p class="sitedesc">Amazon 가격 추적기</p>
+            <div data-role="navbar" class="mainmenu" >
+                <ul>
+                    <li><button id="navfirst" class="menuitem">Login/Register</button></li>
+                    <li><button id="navsecond" class="selected_menu">Track</button></li>
+                    <li><button id="menuSearch" class="menuitem">Search</buton></li>
+                    <li><button id="menuCal" class="menuitem">Calculation</button></li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="content">
+            <div class="contentbox" >
+                
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed"class="footer"></div>
+    </div>  
+
+
+    
+</body>
+</html>

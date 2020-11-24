@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user">
+    <title>Avoca</title>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <!-- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <link rel="stylesheet" href="header.css" type="text/css">
+    <link rel="stylesheet" href="common.css" type="text/css">
+
+    <script src="requset.js"></script>
+    <script src="menus.js"></script>
+
+    <style>
+
+
+        /* 모바일용 */
+        @media only screen and (max-width: 767px) {
+
+            .contentbox {
+                padding: 10% 0 0 0;
+            }
+            .maindesc {
+                font-size: 25px;
+                margin-top: 40px;
+            }
+
+            .mainimg {
+                width: 80%;
+                min-width: 350px;
+                text-align: center;
+            }
+        }
+
+        /* PC용 */
+        @media screen and (min-width: 768px) {
+
+            .mainimg {
+                min-width: 300px;
+                width: 45%;
+                float: left; margin-right: 0px;
+            }
+            .maindesc {
+                font-size: 30px;
+                float: right;
+                padding-top: 50px;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+    <div data-role="page" id="main">
+        <div data-role="header" id="headerbase" data-position="fixed">
+            <div class="headerCentered" id="gotohome">
+                <a href="index.html" data-role="none" >
+                    <input type="image" src="img/avoca.png" class="logoicon">
+                    <p class="sitename">Avoca</p>
+                </a>
+            </div>
+            <p class="sitedesc">Amazon 가격 추적기</p>
+            <div data-role="navbar" class="mainmenu" >
+                <ul>
+
+                    <!-- <li><button id="navfirst" class="menuitem">Login/Register</button></li> -->
+                    <!-- <li><button id="navsecond" class="menuitem">Track</button></li> -->
+                    <li><button id="menuSearch" class="menuitem">Search</buton></li>
+                    <li><button id="menuCal" class="menuitem">Calculation</button></li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="content" style="text-align: center;">
+            <div class="contentbox" >
+                <img data-inline="true" src="img/main1.jpg" class="mainimg">
+                <p data-inline="true" class="maindesc" >
+                    아마존의 상품의 가격을 추적<br><br>
+                    국내 최저가와 비교<br><br>직구시 구매 가격 예측
+                </p>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed"class="footer"></div>
+    </div>  
+
+
+
+
+
+</body>
+</html>

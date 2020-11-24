@@ -1,0 +1,45 @@
+{
+  "items" : 
+    [
+      {
+        "name": "Apple AirPods with Charging Case (Previous Model)",
+        "image": "img/airpods.jpg",
+        "cPrice": "$159.00",
+        "lPrice": "$129.00",
+        "description": "-",
+        "asin": "B01MQWUXZS"
+      },
+      {
+        "name": "Apple iPad Mini (Wi-Fi, 64GB) - Space Gray (Lastest Model)",
+        "image": "img/ipadmini.jpg",
+        "cPrice": "$384.00",
+        "lPrice": "$355.98",
+        "description": "-",
+        "asin": "B07PRD2NQ7"
+      },
+      {
+        "name": "Samsung SSD 860 EVO 1TB 2.5 Inch SATA III Internal SSD (MZ-76E1T0B/AM)",
+        "image": "img/SamsungSSD_860evo.jpg",
+        "cPrice": "$99.99",
+        "lPrice": "$99.99",
+        "description": "-",
+        "asin": "B078DPCY3T"
+      },
+      {
+        "name": "Western Digital 1TB WD Blue 3D NAND Internal PC SSD - SATA III 6 Gb/s, 2.5\"/7mm, Up to 560 MB/s - WDS100T2B0A",
+        "image": "img/WDSSD_blue.jpg",
+        "cPrice": "$104.99",
+        "lPrice": "$87.99",
+        "description": "-",
+        "asin": "B073SBQMCX"
+      },
+      {
+        "name": "Samsung (MZ-V7S1T0B/AM) 970 EVO Plus SSD 1TB - M.2 NVMe Interface Internal Solid State Drive with V-NAND Technology",
+        "image": "img/SamsungSSD_Nvme_970evoPlus.jpg",
+        "cPrice": "$149.99",
+        "lPrice": "$149.98",
+        "description": "-",
+        "asin": "B07MFZY2F2"
+      }
+    ]
+}

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avoca - Search</title>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <!-- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <link rel="stylesheet" href="header.css" type="text/css">
+    <link rel="stylesheet" href="common.css" type="text/css">
+
+    <script src="requset.js"></script>
+    <script src="menus.js"></script>
+    <script src="items.js"></script>
+
+    <script type="text/javascript">
+
+        var data = getData();
+
+        // 창 크기 조절 시, 모바일 화면에서 결과창 description 열 숨김
+        $(window).resize(function() {
+            if(window.innerWidth <= 767) {
+                $('td:nth-child(5), th:nth-child(5)').hide();
+            } else {
+                $('td:nth-child(5), th:nth-child(5)').show();
+            }
+
+        });
+
+
+        // 테이블 내용 검색 기능. 대소문자 구분 안함.
+        $.extend($.expr[":"], {
+            "containsIN": function(elem, i, match, array) {
+                return (elem.textContent || elem.innerText || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+            }
+        });
+
+        $(document).ready(function() {
+            var s_word = request.getParameter('s_word').toLowerCase();
+            var userId = request.getParameter('id');
+            var isSearched = request.getParameter('isSearched');
+            $("#form_id").attr("value", userId);
+            $("#form_isSearched").attr("value", false);
+
+
+            // 검색한 키워드에 대한 데아터를 찾아 테이블에 띄움
+            var html = "";
+            data.forEach(item => {
+                if(item.name.toLocaleLowerCase().match(s_word) == s_word) {
+                    // console.log(item);
+                    html += "<tr>";
+                    html += "<td stye='height:200px;' class='tbl_img'><img src='" + item.img + "'></td>";
+                    html += "<td class='tbl_name link_detail'><a href=\"\" style='color:black;'>" + item.name + "</a></td>";
+                    html += "<td class='tbl_cPrice'>" + item.cPrice + "</td>";
+                    html += "<td class='tbl_lPrice'>" + item.lPrice + "</td>";
+                    html += "<td class='tbl_desc'>" + item.description + "</td>";
+                    html += "<td class='tbl_asin'>" + item.asin + "</td>";
+                    html += "</tr>"
+                }
+            });
+            // console.log(html);
+            $(".TABLE > tbody").html(html);
+
+            $(".TABLE > tbody > td").css("min-height", "100");
+
+
+
+
+
+            // 모바일 화면에서 result table에서 description 열 숨김
+            if(window.innerWidth <= 767) {
+                $('td:nth-child(5), th:nth-child(5)').hide();
+            } else {
+                $('td:nth-child(5), th:nth-child(5)').show();
+            }
+            
+            // 처음이랑 검색어가 없을 때 결과창 안나오고 검색 누르면 나오게 함.
+            if(isSearched && s_word != "") {
+                $(".TABLE").css("visibility", "visible");
+                // showResult();
+            } else {
+                $(".TABLE").css("visibility", "hidden");
+            }
+
+
+            // 결과창에 검색 결과 띄움.
+            // function showResult() {
+            //     $(".TABLE > tbody > tr").hide();
+            //     var resultItem = $(".TABLE > tbody > tr > td:nth-child(6n+2) > a:containsIN('"+s_word+"')");
+            //     resultItem.parent().parent().show();
+            // };
+
+            // 검색버튼 클릭시, 검색어가 없으면 검색 X
+            $("#btnSearch").click(function() {
+                if($("#s_word").val() == "") {
+                    alert("검색어를 입력해 주세요!");
+                    $("#form_searchbox").attr("onsubmit", "return false;");
+                } else {
+                    $("#form_isSearched").attr("value", true);
+                    $("#form_searchbox").attr("onsubmit", "return true;");
+                }
+            });
+
+            // Item Name 클릭시 해당 Item detail 페이지 이동
+            $(".link_detail").click(function() {
+                var tr = $(this).parent();
+                var td = tr.children();
+                var asin = td.eq(5).text();
+                window.open("item_detail.html?asin="+asin);
+
+                $(this).css("color", "black");
+            });
+        });
+
+
+
+
+    </script>
+
+    <style>
+
+        /* 모바일용 */
+        @media only screen and (max-width: 767px) {
+            .contentbox {
+                padding: 0;
+                width: 90%;
+            }
+
+            #search_block {
+                position: relative;
+                width: 100%;
+            }
+            #s_word {
+                font-style: oblique;
+                height:45px;
+            }
+            #btnSearch {
+                background-color: rgb(52, 152, 219); 
+                color: white;
+                font-weight: 400;
+                font-size: 18px;
+                height: 45px;
+                letter-spacing: 2px;
+                padding-top: 0;
+                padding-bottom: 0;
+                text-shadow:none;
+            }
+            .table_div {
+                height: 100%;
+                width: 100%;
+            }
+
+            .TABLE{
+                border-collapse:collapse; 
+                width:100%; 
+                height: 100%; 
+                table-layout: fixed; 
+                word-wrap:break-word;
+                word-break: break-all;
+                border-top: gray 2px solid;
+                border-bottom: gray 2px solid;
+            }
+            .TABLE thead{ width:100%; display: table; background-color:lightgray; height: 50px; }
+            .TABLE tbody{overflow-y:auto; overflow-x: hidden; width:100%; height:500px; display: block; }
+            .TABLE tbody tr{ width:99.99%; display: table; }
+            .TABLE tbody td{ border:solid 1px; min-height: 100px;  }
+            .TABLE th:nth-of-type(1), td:nth-of-type(1), .tbl_img { width: 25%; min-width: 150px;}
+            .TABLE th:nth-of-type(2), td:nth-of-type(2), .tbl_name { width: 30%; }
+            .TABLE th:nth-of-type(4), th:nth-of-type(3), th:nth-of-type(6), td:nth-of-type(4), td:nth-of-type(3), td:nth-of-type(6), 
+                .tbl_cPrice, .tbl_lPrice, .tbl_asin { width: 15%; }
+            .TABLE td:nth-of-type(6), .tbl_asin { font-size: 10px; }
+            .TABLE tbody td img { max-height: 100px; max-width: 100%;}
+            .TABLE td, th { padding-left: 3px; padding-right: 3px;}
+                        
+            a.link_detail.ui-link {
+                color: black;
+                text-decoration: none;
+                font-weight: 400;
+            }
+
+        }
+
+        /* PC용 */
+        @media screen and (min-width: 768px) {
+
+            #search_block {
+                width: 100%;
+                height: 65px;
+                position: relative;
+            }
+            #s_word {
+                height: 100%;
+                left: 0;
+                top: 0;
+                font-style: oblique;
+            }
+            /* 검색창 */
+            div.ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset {
+                width: 75% ;
+                height: 40px;
+                position:absolute ; 
+                left: 0;
+                
+            }
+
+            #btnSearch {
+                background-color: rgb(52, 152, 219); 
+                color: white;
+                font-weight: 400;
+                font-size: 18px;
+                font-family: sans-serif;
+                letter-spacing: 1px;
+                float: right;
+                width: 20%;
+                text-align: center;
+                height:40px;
+                padding-top: 0;
+                padding-bottom: 0;
+                text-shadow:none;
+            }
+
+            .table_div {
+                height: 100%;
+                width: 100%;
+            }
+
+            .TABLE{
+                border-collapse:collapse; 
+                width:100%; 
+                height: 100%; 
+                table-layout: fixed; 
+                word-wrap:break-word;
+                word-break: break-all;
+                border-top: gray 2px solid;
+                border-bottom: gray 2px solid;
+            }
+            .TABLE thead{ width:100%; display: table; background-color:lightgray; height: 50px; }
+            .TABLE tbody{overflow-y:auto; overflow-x: hidden; width:100%; height:500px; display: block; }
+            .TABLE tbody tr{ width:99.9%; display: table; }
+            .TABLE tbody td{ border:solid 1px; min-height: 100px; padding-left: 10px; padding-right: 10px; }
+            .TABLE th:nth-of-type(1), td:nth-of-type(1),.tbl_img  { width: 20%; min-width: 150px;}
+            .TABLE th:nth-of-type(2), td:nth-of-type(2), .tbl_name { width: 25%; }
+            .TABLE th:nth-of-type(4), th:nth-of-type(3), th:nth-of-type(6), td:nth-of-type(4), td:nth-of-type(3), td:nth-of-type(6),
+                .tbl_cPrice, .tbl_lPrice, .tbl_asin  { width: 10%; }
+            .TABLE th:nth-of-type(5), td:nth-of-type(5) { width: 25%; }
+            .TABLE td:nth-of-type(6),  .tbl_asin { font-size: 10px; }
+            .TABLE tbody td img { max-height: 100px; max-width: 100%; }
+                        
+            a.link_detail.ui-link {
+                color: black;
+                text-decoration: none;
+                font-weight: 400;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div data-role="page" id="main">
+        <div data-role="header" id="headerbase" data-position="fixed">
+            <div class="headerCentered" id="gotohome">
+                <a href="index.html" data-role="none" >
+                    <input type="image" src="img/avoca.png" class="logoicon">
+                    <p class="sitename">Avoca</p>
+                </a>
+            </div>
+            <p class="sitedesc">Amazon 가격 추적기</p>
+            <div data-role="navbar" class="mainmenu" >
+                <ul>
+                    <!-- <li><button id="navfirst" class="menuitem">Login/Register</button></li>
+                    <li><button id="navsecond" class="menuitem">Track</button></li> -->
+                    <li><button id="menuSearch" class="selected_menu">Search</buton></li>
+                    <li><button id="menuCal" class="menuitem">Calculation</button></li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="content">
+            <div class="contentbox" style="margin-top: 30px;">
+                <div>
+                    <form name="search" action="search.html" method="get" target="_self" id="form_searchbox">
+                        <input type="hidden" name="id" id="form_id">
+                        <input type="hidden" name="isSearched" id="form_isSearched">
+                        <div id="search_block" class="center_horizontal">
+                            <input type="text" name="s_word" id="s_word" placeholder="Search for products...">
+                            <button type="submit" id="btnSearch">Search</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table_div">
+                    <table class="TABLE" id="result_table">
+                        <thead>
+                            <th >Image</th>
+                            <th >Name</th>
+                            <th >Current</th> 
+                            <th >Lowest</th>
+                            <th >Description</th>
+                            <th >ASIN</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed"class="footer"></div>
+    </div>  
+
+
+    
+</body>
+</html>

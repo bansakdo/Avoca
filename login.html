@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user">
+    <title>Avoca</title>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <!-- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+    <link rel="stylesheet" href="header.css" type="text/css">
+    <link rel="stylesheet" href="common.css" type="text/css">
+
+    <script src="requset.js"></script>
+    <script src="menus.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#btnRegister").click(function() {
+                alert("회원가입 페이지로 이동합니다.");
+                location.href="register.html";
+            });
+            $("#submit").click(function() {
+                if($("#id").val().length == 0) {
+                    alert("ID를 입력해 주세요.");
+                    $("#id").focus();
+                    return false;
+                }
+            })
+
+        })
+    </script> 
+    <style>
+        /* 모바일용 */
+        @media only screen and (max-width: 767px) {
+
+
+            .formbox {   
+                position: relative;
+                width: 80%; 
+                height: 80px;
+                /* margin-bottom: 60px; */
+                /* margin-top: 20px; */
+            }
+
+            .form_h2 {
+                position:absolute; 
+                /* width:30% ; */
+                margin-top: 0px; 
+                float: left;
+                display: block;
+                
+            }
+            .form_input {
+                position:absolute ; 
+                /* height: 100%;  */
+                width: 100%; 
+                /* margin-top: 0px;  */
+                float: left;
+                display: block;
+                /* margin-top: 25px; */
+                margin-bottom: 0;
+                bottom: 0;
+            }
+        }
+
+        /* PC용 */
+        @media screen and (min-width: 768px) {
+
+            .formbox {
+                position: relative;
+                width: 50%; 
+                height: 50px;
+                /* margin-bottom: 10px; */
+                /* display: block; */
+            }
+
+            .form_h2 {
+                position:absolute; 
+                /* width:30% ; */
+                margin-top: 10px; 
+            }
+            .form_input {
+                position:absolute ; 
+                height: 100%; 
+                width: 70%; 
+                right: 0;
+                top: 0;
+                margin-top: 0px; 
+            }
+
+            .form_button {
+                position: relative;
+                /* height: 100%; */
+                width: 30%;
+            }
+
+
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <div data-role="page" id="main">
+        <div data-role="header" id="headerbase" data-position="fixed">
+            <div class="headerCentered" id="gotohome">
+                <a href="index.html" data-role="none" target="_self">
+                    <input type="image" src="img/avoca.png" class="logoicon">
+                    <p class="sitename">Avoca</p>
+                </a>
+            </div>
+            <p class="sitedesc">Amazon 가격 추적기</p>
+            <div data-role="navbar" class="mainmenu" >
+                <ul>
+                    <li><button id="navfirst" class="selected_menu">Login/Register</button></li>
+                    <li><button id="navsecond" class="menuitem">Track</button></li>
+                    <li><button id="menuSearch" class="menuitem">Search</buton></li>
+                    <li><button id="menuCal" class="menuitem">Calculation</button></li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="content">
+            <div class="contentbox" style="height: 600px;">
+                <h1>로그인</h1>
+                <form name="login" action="index.html" method="get" target="_self">
+                    <div class="center_horizontal formbox" >
+                        <h2 class="form_h2">ID</h2>
+                        <div class="form_input">
+                            <input type="text" name="id" id="id"> 
+                        </div>
+                    </div>
+
+                    <div class="center_horizontal formbox">
+                        <h2 class="form_h2">PW</h2>
+                        <div class="form_input">
+                            <input type="password" name="pw" id="pw">
+                        </div>
+                    </div>
+
+                    <div class="center_horizontal formbox">
+
+                        <input type="submit" value="로그인" class="form_button" id="submit">
+                        <input type="button" value="회원가입" class="form_button" id="btnRegister">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed"class="footer"></div>
+    </div>  
+
+
+
+
+
+</body>
+
+
+</script>
+</html>
